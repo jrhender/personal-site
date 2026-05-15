@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Personal Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #f7f8f8;
+      --surface:     #ffffff;
+      --surface-2:   #edf3f5;
+      --header-bg:   #0f3040;
+      --header-bg-2: #1a4a60;
+      --text:        #0f2a38;
+      --text-muted:  #5a7a88;
+      --text-faint:  #8aa0aa;
+      --accent:      #4ecdc4;
+      --accent-dk:   #2aada4;
+      --accent-soft: #e0f4f4;
+      --border:      #d0dce0;
+      --border-lt:   #e8f0f4;
+      --radius:      6px;
+      --shadow:      0 2px 16px rgba(15,48,64,0.08);
+      --shadow-lg:   0 8px 40px rgba(15,48,64,0.14);
+      --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-serif:   'Source Serif 4', Georgia, serif;
+      --font-sans:    'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-bg-2);
+      transition: background var(--transition);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #e8f4f0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px; height: 26px;
+      background: var(--accent);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--header-bg);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #8ab8c8;
+      text-decoration: none;
+      padding: 0 1.1rem;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: #e8f4f0;
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem clamp(1.5rem, 8vw, 8rem) 4rem;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(78,205,196,0.07) 0%, transparent 70%),
+        var(--bg);
+    }
+
+    .hero-inner {
+      max-width: 720px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent-dk);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s 0.1s ease forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s 0.2s ease forwards;
+    }
+
+    h1 span {
+      color: var(--accent-dk);
+    }
+
+    .hero-bio {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s 0.35s ease forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s 0.5s ease forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 5px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--header-bg);
+      color: #e8f4f0;
+      border-color: var(--header-bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--header-bg-2);
+      border-color: var(--header-bg-2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15,48,64,0.25);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface);
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* ── Section layout ───────────────────────────────────── */
+    section {
+      padding: 5rem clamp(1.5rem, 8vw, 8rem);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-family: var(--font-serif);
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.65;
+    }
+
+    /* ── Projects ─────────────────────────────────────────── */
+    #projects { background: var(--surface); }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .project-item {
+      border-bottom: 1.5px solid var(--border);
+      background: var(--surface);
+      transition: background var(--transition);
+    }
+
+    .project-item:last-child { border-bottom: none; }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      user-select: none;
+      gap: 1rem;
+    }
+
+    .project-header:hover { background: var(--border-lt, #e8f0f4); }
+    .project-item.open { background: #edf5f5; }
+
+    .project-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-number {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-dk);
+      letter-spacing: 0.05em;
+      min-width: 2rem;
+    }
+
+    .project-title-row {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.18rem 0.6rem;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: #0a5858;
+      letter-spacing: 0.03em;
+      border: 1px solid #a8dcdc;
+    }
+
+    .project-item.open .tag {
+      background: #fff;
+    }
+
+    .project-toggle {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .project-item.open .project-toggle {
+      background: var(--header-bg);
+      border-color: var(--header-bg);
+      transform: rotate(45deg);
+    }
+
+    .project-toggle svg {
+      width: 13px; height: 13px;
+      stroke: var(--text-muted);
+      transition: stroke var(--transition);
+    }
+
+    .project-item.open .project-toggle svg { stroke: #e8f4f0; }
+
+    /* Animated body */
+    .project-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-item.open .project-body {
+      grid-template-rows: 1fr;
+    }
+
+    .project-body-inner {
+      overflow: hidden;
+    }
+
+    .project-body-content {
+      padding: 0 2rem 2rem 2rem;
+      padding-left: calc(2rem + 1.25rem + 2rem); /* align with title */
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-desc {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 600px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent-dk);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      background: #fff;
+      border: 1.5px solid var(--accent);
+      transition: all var(--transition);
+    }
+
+    .project-link:hover {
+      background: var(--header-bg);
+      border-color: var(--header-bg);
+      color: #e8f4f0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(15,48,64,0.2);
+    }
+
+    .project-link svg {
+      width: 13px; height: 13px;
+    }
+
+    /* ── Connect / Social ─────────────────────────────────── */
+    #connect {
+      background: var(--bg);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .social-card {
+      position: relative;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow: hidden;
+      transition: all var(--transition);
+      group: true;
+    }
+
+    .social-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .social-card.github::before  { background: linear-gradient(135deg, rgba(15,48,64,0.06), rgba(15,48,64,0.02)); }
+    .social-card.linkedin::before { background: linear-gradient(135deg, rgba(78,205,196,0.06), rgba(78,205,196,0.02)); }
+
+    .social-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border);
+    }
+
+    .social-card.github:hover  { box-shadow: 0 12px 40px rgba(15,48,64,0.15); border-color: var(--header-bg); }
+    .social-card.linkedin:hover { box-shadow: 0 12px 40px rgba(78,205,196,0.18); border-color: var(--accent); }
+
+    .social-card:hover::before { opacity: 1; }
+
+    .social-icon {
+      width: 46px; height: 46px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .social-card.github  .social-icon { background: var(--header-bg); }
+    .social-card.linkedin .social-icon { background: var(--accent); }
+
+    .social-icon svg {
+      width: 24px; height: 24px;
+      fill: #fff;
+    }
+
+    .social-card.linkedin .social-icon svg { fill: var(--header-bg); }
+
+    .social-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .social-text p {
+      font-family: var(--font-serif);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .social-arrow {
+      margin-top: auto;
+      align-self: flex-end;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .social-card:hover .social-arrow {
+      border-color: var(--text);
+      background: var(--text);
+    }
+
+    .social-card:hover .social-arrow svg { stroke: #fff; }
+
+    .social-arrow svg {
+      width: 16px; height: 16px;
+      stroke: var(--text-muted);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition);
+    }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      background: var(--header-bg);
+      padding: 1.75rem clamp(1.5rem, 8vw, 8rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: #5a8a9a;
+    }
+
+    footer a {
+      color: #8ab8c8;
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    /* ── Scroll-in animation ──────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .project-body-content { padding-left: 2rem; }
+      .project-header { padding: 1.25rem 1.25rem; }
+      .project-body-content { padding: 0 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────── -->
+  <nav>
+    <a class="nav-logo" href="#hero">
+      <span class="nav-logo-mark">YN</span>
+      Your Name
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Available for opportunities</div>
+      <h1>Hi, I'm <span>Your Name</span></h1>
+      <p class="hero-bio">
+        I'm a [your role] based in [your location]. I love building [what you love doing] —
+        crafting things that are both functional and thoughtful. Currently working on [something exciting].
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+          View my work
+        </a>
+        <a href="#connect" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ───────────────────────────────────────── -->
+  <section id="projects">
+    <p class="section-label fade-in">Work</p>
+    <h2 class="section-title fade-in">Selected Projects</h2>
+    <p class="section-sub fade-in">A few things I've built. Click to expand each one.</p>
+
+    <div class="projects-list fade-in">
+
+      <!-- Project 1 -->
+      <div class="project-item" data-project>
+        <div class="project-header" role="button" tabindex="0" aria-expanded="false">
+          <div class="project-header-left">
+            <span class="project-number">01</span>
+            <div class="project-title-row">
+              <div class="project-name">Project Alpha</div>
+              <div class="project-stack">
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Node.js</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-toggle" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="project-body" role="region">
+          <div class="project-body-inner">
+            <div class="project-body-content">
+              <p class="project-desc">
+                A brief description of what Project Alpha does and the problem it solves.
+                What was the challenge? What did you build? What did you learn? Keep it
+                conversational and human — this is your chance to tell the story.
+              </p>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-item" data-project>
+        <div class="project-header" role="button" tabindex="0" aria-expanded="false">
+          <div class="project-header-left">
+            <span class="project-number">02</span>
+            <div class="project-title-row">
+              <div class="project-name">Project Beta</div>
+              <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-toggle" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="project-body" role="region">
+          <div class="project-body-inner">
+            <div class="project-body-content">
+              <p class="project-desc">
+                Describe Project Beta here. What does it do? Who is it for? What made it
+                technically interesting or particularly fun to build? This is placeholder
+                copy — replace it with your own story.
+              </p>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-item" data-project>
+        <div class="project-header" role="button" tabindex="0" aria-expanded="false">
+          <div class="project-header-left">
+            <span class="project-number">03</span>
+            <div class="project-title-row">
+              <div class="project-name">Project Gamma</div>
+              <div class="project-stack">
+                <span class="tag">Next.js</span>
+                <span class="tag">Tailwind</span>
+                <span class="tag">Supabase</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-toggle" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="project-body" role="region">
+          <div class="project-body-inner">
+            <div class="project-body-content">
+              <p class="project-desc">
+                A short overview of Project Gamma — the problem space, your approach, and
+                any results or impact if applicable. Numbers and outcomes make this section
+                shine when you have them.
+              </p>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-item" data-project>
+        <div class="project-header" role="button" tabindex="0" aria-expanded="false">
+          <div class="project-header-left">
+            <span class="project-number">04</span>
+            <div class="project-title-row">
+              <div class="project-name">Project Delta</div>
+              <div class="project-stack">
+                <span class="tag">Go</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Kubernetes</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-toggle" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="project-body" role="region">
+          <div class="project-body-inner">
+            <div class="project-body-content">
+              <p class="project-desc">
+                Describe your fourth project here. Feel free to add or remove projects —
+                just duplicate or delete a project-item block. The accordion handles any
+                number of items automatically.
+              </p>
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank" rel="noopener">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-list -->
+  </section>
+
+  <!-- ── Connect ─────────────────────────────────────────── -->
+  <section id="connect">
+    <p class="section-label fade-in">Let's talk</p>
+    <h2 class="section-title fade-in">Find me online</h2>
+    <p class="section-sub fade-in">I'm always open to interesting conversations, collaborations, or just a good chat.</p>
+
+    <div class="social-grid">
+
+      <!-- GitHub -->
+      <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="social-card github fade-in">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </div>
+        <div class="social-text">
+          <h3>GitHub</h3>
+          <p>Browse my repositories, open-source contributions, and side projects.</p>
+        </div>
+        <div class="social-arrow">
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="social-card linkedin fade-in">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+        <div class="social-text">
+          <h3>LinkedIn</h3>
+          <p>Connect professionally, see my experience, and let's explore opportunities together.</p>
+        </div>
+        <div class="social-arrow">
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────── -->
+  <footer>
+    <p>© 2026 Your Name. Built with care.</p>
+    <p>
+      <a href="mailto:you@example.com">you@example.com</a>
+    </p>
+  </footer>
+
+  <!-- ── JavaScript ─────────────────────────────────────── -->
+  <script>
+    // Accordion
+    document.querySelectorAll('[data-project]').forEach(item => {
+      const header = item.querySelector('.project-header');
+      header.addEventListener('click', () => toggleProject(item));
+      header.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleProject(item);
+        }
+      });
+    });
+
+    function toggleProject(item) {
+      const isOpen = item.classList.contains('open');
+      // Close all others
+      document.querySelectorAll('[data-project].open').forEach(p => {
+        p.classList.remove('open');
+        p.querySelector('.project-header').setAttribute('aria-expanded', 'false');
+      });
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.project-header').setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
