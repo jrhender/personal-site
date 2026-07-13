@@ -444,9 +444,62 @@
       width: 13px; height: 13px;
     }
 
+    /* ── Certifications ───────────────────────────────────── */
+    #certifications {
+      background: var(--bg);
+    }
+
+    #certifications .section-title {
+      margin-bottom: 3rem;
+    }
+
+    .cert-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      max-width: 720px;
+    }
+
+    .cert-logo {
+      display: block;
+      height: 1.4rem;
+      width: auto;
+      margin-bottom: 0.9rem;
+    }
+
+    .cert-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-info p {
+      font-family: var(--font-serif);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .cert-info .cert-date {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.45rem;
+    }
+
     /* ── Connect / Social ─────────────────────────────────── */
     #connect {
-      background: var(--bg);
+      background: var(--surface);
     }
 
     .social-grid {
@@ -740,6 +793,27 @@
 
 
     </div><!-- /projects-list -->
+  </section>
+
+  <!-- ── Certifications ──────────────────────────────────── -->
+  <section id="certifications">
+    <p class="section-label fade-in">Learning</p>
+    <h2 class="section-title fade-in">Certifications</h2>
+
+    <div class="cert-card fade-in">
+      <div class="cert-info">
+        <img class="cert-logo" src="/bluedot-logo.svg" alt="BlueDot Impact" width="1003" height="133" />
+        <h3>Technical AI Safety</h3>
+        <p class="cert-date">Completed July 2026</p>
+        <p>30-hour professional certification covering current safety techniques and their gaps, threat modelling through kill chain analysis, and planning contributions to making AI safer.</p>
+      </div>
+      <div class="project-links">
+        <a href="https://bluedot.org/certification?id=recev2beQtLD2tkGO" class="project-link" target="_blank" rel="noopener">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View certificate
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- ── Connect ─────────────────────────────────────────── -->
