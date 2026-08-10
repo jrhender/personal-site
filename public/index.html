@@ -237,6 +237,9 @@
 
     .writing-card {
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
       max-width: 760px;
       background: var(--surface);
       border: 1.5px solid var(--border);
@@ -245,6 +248,22 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .writing-main { flex: 1; min-width: 0; }
+
+    .writing-logo-link {
+      flex-shrink: 0;
+      display: block;
+      transition: transform var(--transition);
+    }
+
+    .writing-logo-link:hover { transform: scale(1.03); }
+
+    .writing-logo {
+      display: block;
+      width: 140px;
+      height: auto;
     }
 
     .writing-card::before {
@@ -728,6 +747,13 @@
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .writing-card {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.75rem;
+        padding: 2rem 1.75rem;
+      }
+      .writing-logo { width: 120px; }
       .project-body-content { padding-left: 2rem; }
       .project-header { padding: 1.25rem 1.25rem; }
       .project-body-content { padding: 0 1.25rem 1.5rem; }
@@ -777,22 +803,27 @@
     <p class="section-sub fade-in">Writings on AI safety.</p>
 
     <div class="writing-card fade-in">
-      <div class="writing-eyebrow">
-        <span class="pill">Featured</span>
-        <span class="pub">Civic AI Canada</span>
+      <div class="writing-main">
+        <div class="writing-eyebrow">
+          <span class="pill">Featured</span>
+          <span class="pub">Civic AI Canada</span>
+        </div>
+        <h3 class="writing-title">
+          <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" target="_blank" rel="noopener">How to Read a Model Card</a>
+        </h3>
+        <p class="writing-desc">
+          Model cards (sometimes called system cards) are documents developers release
+          alongside new AI models, covering what a system can do, what it can't, and how
+          it was tested — but they can be tough to read without some background. This guide
+          walks through them for a general audience, so it's easy to share with friends and family.
+        </p>
+        <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
+          Read the article
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-      <h3 class="writing-title">
-        <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" target="_blank" rel="noopener">How to Read a Model Card</a>
-      </h3>
-      <p class="writing-desc">
-        Model cards (sometimes called system cards) are documents developers release
-        alongside new AI models, covering what a system can do, what it can't, and how
-        it was tested — but they can be tough to read without some background. This guide
-        walks through them for a general audience, so it's easy to share with friends and family.
-      </p>
-      <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
-        Read the article
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+      <a class="writing-logo-link" href="https://civicaicanada.org/" target="_blank" rel="noopener" aria-label="Civic AI Canada">
+        <img class="writing-logo" src="/civicai-logo.png" alt="Civic AI Canada logo" width="430" height="479" />
       </a>
     </div>
   </section>
