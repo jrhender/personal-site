@@ -247,10 +247,43 @@
       transition: box-shadow var(--transition), transform var(--transition);
     }
 
-    .writing-mark {
-      height: 24px;
+    /* Civic AI Canada lockup — mirrors the publication's own logo styling */
+    .civic-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .civic-logo:hover { opacity: 0.82; }
+
+    .civic-leaf {
       width: auto;
+      height: 40px;
+      flex-shrink: 0;
       display: block;
+    }
+
+    .civic-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .civic-name {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1E2D40;
+    }
+
+    .civic-tagline {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #C8102E;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
     }
 
     .writing-card::before {
@@ -786,7 +819,13 @@
     <div class="writing-card fade-in">
       <div class="writing-eyebrow">
         <span class="pill">Featured</span>
-        <img class="writing-mark" src="/civicai-mark.png" alt="Civic AI Canada logo" width="128" height="128" />
+        <a class="civic-logo" href="https://civicaicanada.org/" target="_blank" rel="noopener" aria-label="Civic AI Canada — AI Policy for All Canadians">
+          <img class="civic-leaf" src="/civicai-leaf.png" alt="Civic AI Canada logo" width="160" height="160" />
+          <span class="civic-text">
+            <span class="civic-name">Civic AI Canada</span>
+            <span class="civic-tagline">AI Policy for All Canadians</span>
+          </span>
+        </a>
       </div>
       <h3 class="writing-title">
         <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" target="_blank" rel="noopener">How to Read a Model Card</a>
