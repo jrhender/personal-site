@@ -232,6 +232,84 @@
       box-shadow: var(--shadow);
     }
 
+    /* ── Featured writing ─────────────────────────────────── */
+    #writing { background: var(--bg); }
+
+    .writing-card {
+      position: relative;
+      max-width: 760px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem 2.5rem 3rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .writing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dk));
+    }
+
+    .writing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .writing-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      margin-bottom: 1rem;
+    }
+
+    .writing-eyebrow .pill {
+      background: var(--accent-soft);
+      padding: 0.28rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    .writing-eyebrow .pub {
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .writing-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .writing-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .writing-title a:hover { color: var(--accent-dk); }
+
+    .writing-desc {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 600px;
+      margin-bottom: 1.75rem;
+    }
+
     /* ── Section layout ───────────────────────────────────── */
     section {
       padding: 5rem clamp(1.5rem, 8vw, 8rem);
@@ -666,6 +744,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
+      <li><a href="#writing">Writing</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
@@ -687,6 +766,33 @@
         </a>
         <a href="#connect" class="btn btn-ghost">Get in touch</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Featured writing ───────────────────────────────── -->
+  <section id="writing">
+    <p class="section-label fade-in">Writing</p>
+    <h2 class="section-title fade-in">Latest post</h2>
+    <p class="section-sub fade-in">Writing on AI, safety, and governance for a general audience.</p>
+
+    <div class="writing-card fade-in">
+      <div class="writing-eyebrow">
+        <span class="pill">Featured</span>
+        <span class="pub">Civic AI Canada</span>
+      </div>
+      <h3 class="writing-title">
+        <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" target="_blank" rel="noopener">How to Read a Model Card</a>
+      </h3>
+      <p class="writing-desc">
+        Model cards (sometimes called system cards) are documents developers release
+        alongside new AI models, covering what a system can do, what it can't, and how
+        it was tested — but they can be tough to read without some background. This guide
+        walks through them for a general audience, so it's easy to share with friends and family.
+      </p>
+      <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
+        Read the article
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </section>
 
