@@ -232,6 +232,123 @@
       box-shadow: var(--shadow);
     }
 
+    /* ── Featured writing ─────────────────────────────────── */
+    #writing { background: var(--bg); }
+
+    .writing-card {
+      position: relative;
+      max-width: 760px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem 2.5rem 3rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    /* Civic AI Canada lockup — mirrors the publication's own logo styling */
+    .civic-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .civic-logo:hover { opacity: 0.82; }
+
+    .civic-leaf {
+      width: auto;
+      height: 40px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .civic-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .civic-name {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1E2D40;
+    }
+
+    .civic-tagline {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #C8102E;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .writing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dk));
+    }
+
+    .writing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .writing-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      margin-bottom: 1rem;
+    }
+
+    .writing-eyebrow .pill {
+      background: var(--accent-soft);
+      padding: 0.28rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    .writing-eyebrow .pub {
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .writing-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .writing-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .writing-title a:hover { color: var(--accent-dk); }
+
+    .writing-desc {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 600px;
+      margin-bottom: 1.75rem;
+    }
+
     /* ── Section layout ───────────────────────────────────── */
     section {
       padding: 5rem clamp(1.5rem, 8vw, 8rem);
@@ -650,6 +767,7 @@
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .writing-card { padding: 2rem 1.75rem; }
       .project-body-content { padding-left: 2rem; }
       .project-header { padding: 1.25rem 1.25rem; }
       .project-body-content { padding: 0 1.25rem 1.5rem; }
@@ -666,6 +784,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
+      <li><a href="#writing">Writing</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
@@ -681,12 +800,46 @@
         working to ensure harms from AI are minimized and benefits are shared widely.
       </p>
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">
+        <a href="#writing" class="btn btn-primary">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
-          View my work
+          Latest writing
         </a>
+        <a href="#projects" class="btn btn-ghost">View my work</a>
         <a href="#connect" class="btn btn-ghost">Get in touch</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Featured writing ───────────────────────────────── -->
+  <section id="writing">
+    <p class="section-label fade-in">Writing</p>
+    <h2 class="section-title fade-in">Latest post</h2>
+    <p class="section-sub fade-in">Writings on AI safety.</p>
+
+    <div class="writing-card fade-in">
+      <div class="writing-eyebrow">
+        <span class="pill">Featured</span>
+        <a class="civic-logo" href="https://civicaicanada.org/" target="_blank" rel="noopener" aria-label="Civic AI Canada — AI Policy for All Canadians">
+          <img class="civic-leaf" src="/civicai-leaf.png" alt="Civic AI Canada logo" width="160" height="160" />
+          <span class="civic-text">
+            <span class="civic-name">Civic AI Canada</span>
+            <span class="civic-tagline">AI Policy for All Canadians</span>
+          </span>
+        </a>
+      </div>
+      <h3 class="writing-title">
+        <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" target="_blank" rel="noopener">How to Read a Model Card</a>
+      </h3>
+      <p class="writing-desc">
+        Model cards (sometimes called system cards) are documents developers release
+        alongside new AI models, covering what a system can do, what it can't, and how
+        it was tested. They can be tough to read without some background, so this guide
+        walks through them for a general audience. Easy to share with friends and family.
+      </p>
+      <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
+        Read the article
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </section>
 
