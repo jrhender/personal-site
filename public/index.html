@@ -320,6 +320,30 @@
       color: var(--text-faint);
     }
 
+    /* BlueDot Impact lockup — marks the course the post came out of */
+    .bluedot-lockup {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .bluedot-lockup:hover { opacity: 0.82; }
+
+    .bluedot-mark {
+      display: block;
+      height: 1.15rem;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    .eyebrow-sep {
+      width: 1px;
+      height: 1rem;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
     .writing-meta {
       font-family: var(--font-sans);
       font-size: 0.78rem;
@@ -347,7 +371,8 @@
     }
 
     .writing-eyebrow {
-      display: inline-flex;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.55rem;
       font-family: var(--font-sans);
@@ -872,13 +897,17 @@
           <svg class="substack-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
           <span class="substack-name">Substack</span>
         </a>
+        <span class="eyebrow-sep" aria-hidden="true"></span>
+        <a class="bluedot-lockup" href="https://bluedot.org/" target="_blank" rel="noopener" aria-label="BlueDot Impact">
+          <img class="bluedot-mark" src="/bluedot-logo.svg" alt="BlueDot Impact" width="1003" height="133" />
+        </a>
       </div>
       <h3 class="writing-title">
         <a href="https://jrhender.substack.com/p/is-interaction-mode-a-property-mode" target="_blank" rel="noopener">Is interaction mode a property mode of the task?</a>
       </h3>
       <p class="writing-desc">
         Whether people use AI to automate their work or to augment it could shape much of
-        AI's economic impact — but is that choice a property of the task itself? I ranked
+        AI's economic impact, but is that choice a property of the task itself? I ranked
         491 O*NET tasks by augmentation share in the public WildChat dataset and in the
         Anthropic Economic Index. The two orderings barely agree (Spearman's rho = 0.065),
         suggesting the task alone doesn't determine how people work with AI. Written as my
