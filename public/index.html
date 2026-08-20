@@ -235,6 +235,12 @@
     /* ── Featured writing ─────────────────────────────────── */
     #writing { background: var(--bg); }
 
+    .writing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
     .writing-card {
       position: relative;
       max-width: 760px;
@@ -284,6 +290,47 @@
       color: #C8102E;
       letter-spacing: 0.09em;
       text-transform: uppercase;
+    }
+
+    /* Substack lockup — mirrors the publication's own mark */
+    .substack-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .substack-logo:hover { opacity: 0.82; }
+
+    .substack-mark {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      display: block;
+      color: #FF6719;
+    }
+
+    .substack-name {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .writing-meta {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+    }
+
+    .writing-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .writing-card::before {
@@ -346,7 +393,7 @@
       color: var(--text-muted);
       line-height: 1.75;
       max-width: 600px;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1rem;
     }
 
     /* ── Section layout ───────────────────────────────────── */
@@ -813,12 +860,46 @@
   <!-- ── Featured writing ───────────────────────────────── -->
   <section id="writing">
     <p class="section-label fade-in">Writing</p>
-    <h2 class="section-title fade-in">Latest post</h2>
+    <h2 class="section-title fade-in">Recent posts</h2>
     <p class="section-sub fade-in">Writings on AI safety.</p>
+
+    <div class="writing-list">
 
     <div class="writing-card fade-in">
       <div class="writing-eyebrow">
-        <span class="pill">Featured</span>
+        <span class="pill">Research</span>
+        <a class="substack-logo" href="https://jrhender.substack.com/" target="_blank" rel="noopener" aria-label="jrhender on Substack">
+          <svg class="substack-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+          <span class="substack-name">Substack</span>
+        </a>
+      </div>
+      <h3 class="writing-title">
+        <a href="https://jrhender.substack.com/p/is-interaction-mode-a-property-mode" target="_blank" rel="noopener">Is interaction mode a property mode of the task?</a>
+      </h3>
+      <p class="writing-desc">
+        Whether people use AI to automate their work or to augment it could shape much of
+        AI's economic impact — but is that choice a property of the task itself? I ranked
+        491 O*NET tasks by augmentation share in the public WildChat dataset and in the
+        Anthropic Economic Index. The two orderings barely agree (Spearman's rho = 0.065),
+        suggesting the task alone doesn't determine how people work with AI. Written as my
+        project for the BlueDot Impact Technical AI Safety course.
+      </p>
+      <p class="writing-meta">Published August 15, 2026</p>
+      <div class="writing-actions">
+        <a href="https://jrhender.substack.com/p/is-interaction-mode-a-property-mode" class="btn btn-primary" target="_blank" rel="noopener">
+          Read the post
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://github.com/jrhender/aut-aug-research" class="btn btn-ghost" target="_blank" rel="noopener">
+          View the code
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="writing-card fade-in">
+      <div class="writing-eyebrow">
+        <span class="pill">Explainer</span>
         <a class="civic-logo" href="https://civicaicanada.org/" target="_blank" rel="noopener" aria-label="Civic AI Canada — AI Policy for All Canadians">
           <img class="civic-leaf" src="/civicai-leaf.png" alt="Civic AI Canada logo" width="160" height="160" />
           <span class="civic-text">
@@ -836,11 +917,16 @@
         it was tested. They can be tough to read without some background, so this guide
         walks through them for a general audience. Easy to share with friends and family.
       </p>
-      <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
-        Read the article
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
-      </a>
+      <p class="writing-meta">Published August 7, 2026</p>
+      <div class="writing-actions">
+        <a href="https://civicaicanada.org/writing/how-to-read-a-model-card/" class="btn btn-primary" target="_blank" rel="noopener">
+          Read the article
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
+
+    </div><!-- /writing-list -->
   </section>
 
   <!-- ── Projects ───────────────────────────────────────── -->
